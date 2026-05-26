@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BugHunt — Login</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Syne:wght@400;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="login.css" />
+  </head>
+  <body>
+    <div class="noise"></div>
+    <div class="scanline"></div>
+
+    <nav class="nav">
+      <div class="nav-logo">
+        <a href="home" style="text-decoration: none; color: inherit">
+          <span class="logo-bracket">[</span>BugHunt<span class="logo-bracket"
+            >]</span
+          >
+        </a>
+      </div>
+      <div class="nav-links">
+        <a href="login" class="nav-link nav-link--active">Login</a>
+        <a href="register" class="nav-link">Register</a>
+      </div>
+    </nav>
+
+    <main class="auth-main">
+      <div class="auth-left">
+        <div class="auth-brand">
+          <div class="brand-tag">
+            <span class="tag">AUTH</span>
+            <span class="tag">SECURE</span>
+          </div>
+          <h2 class="brand-title">
+            <span class="line line--1">Hunt.</span>
+            <span class="line line--2">Report.</span>
+            <span class="line line--3">Earn.</span>
+          </h2>
+          <p class="brand-desc">
+            Sign in to access your dashboard,<br />
+            submit vulnerability reports,<br />
+            and track your findings.
+          </p>
+        </div>
+
+        <div class="terminal terminal--sm">
+          <div class="terminal-header">
+            <span class="dot dot--red"></span>
+            <span class="dot dot--yellow"></span>
+            <span class="dot dot--green"></span>
+            <span class="terminal-title">auth.sh</span>
+          </div>
+          <div class="terminal-body">
+            <div class="terminal-line">
+              <span class="prompt">$</span>
+              <span class="cmd">verify_session --user</span>
+            </div>
+            <div class="terminal-line delay-1">
+              <span class="prompt">!</span>
+              <span class="warn">session expired</span>
+            </div>
+            <div class="terminal-line delay-2">
+              <span class="prompt">$</span>
+              <span class="cmd">login --secure</span>
+            </div>
+            <div class="terminal-line delay-3">
+              <span class="prompt success">✓</span>
+              <span class="success-text">awaiting credentials...</span>
+            </div>
+            <div class="terminal-line delay-4">
+              <span class="prompt">$</span>
+              <span class="cursor-blink">_</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="auth-right">
+        <div class="auth-card">
+          <div class="auth-card-header">
+            <div class="auth-card-icon">🔐</div>
+            <h1 class="auth-card-title">Welcome back</h1>
+            <p class="auth-card-sub">Sign in to your hunter account</p>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="email">Email</label>
+            <div class="input-wrapper">
+              <span class="input-icon">@</span>
+              <input
+                type="email"
+                id="email"
+                class="form-input"
+                placeholder="hunter@domain.com"
+                autocomplete="email"
+              />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="label-row">
+              <label class="form-label" for="password">Password</label>
+              <a href="forgotpassword" class="forgot-link" id="forgot"
+                >Forgot?</a
+              >
+            </div>
+            <div class="input-wrapper">
+              <span class="input-icon">*</span>
+              <input
+                type="password"
+                id="password"
+                class="form-input"
+                placeholder="••••••••••••"
+                autocomplete="current-password"
+              />
+              <button
+                class="toggle-pw"
+                id="togglePw"
+                type="button"
+                aria-label="Toggle password"
+              >
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                  <circle cx="12" cy="12" r="3" />
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <p class="form-result" id="result"></p>
+
+          <button type="button" class="btn btn--primary btn--full" id="login">
+            <span>Sign In</span>
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4" />
+              <polyline points="10 17 15 12 10 7" />
+              <line x1="15" y1="12" x2="3" y2="12" />
+            </svg>
+          </button>
+
+          <div class="auth-divider">
+            <span class="divider-line"></span>
+            <span class="divider-text">or</span>
+            <span class="divider-line"></span>
+          </div>
+
+          <button
+            type="button"
+            class="btn btn--ghost btn--full"
+            id="register"
+            onclick="location.href = 'register.html'"
+          >
+            Create an account
+          </button>
+
+          <p class="attempt-info">
+            Login attempts: <span class="attempt-count" id="attemp">0</span>
+          </p>
+        </div>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <span>Built for learning · OWASP Top 10</span>
+    </footer>
+
+    <script src="login.js"></script>
+  </body>
+</html>

@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BugHunt — Admin</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Syne:wght@400;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="admin.css" />
+  </head>
+  <body>
+    <div class="noise"></div>
+    <div class="scanline"></div>
+
+    <nav class="nav">
+      <div class="nav-logo">
+        <a href="/profile" style="text-decoration: none; color: inherit">
+          <span class="logo-bracket">[</span>BugHunt<span class="logo-bracket"
+            >]</span
+          >
+          <span class="admin-badge">ADMIN</span>
+        </a>
+      </div>
+      <div class="nav-links">
+        <a href="/profile" class="nav-link">Profile</a>
+        <a href="/learn" class="nav-link">Learn</a>
+        <a href="/admin" class="nav-link nav-link--active">Admin</a>
+        <button class="nav-link" id="logout-btn">Logout</button>
+      </div>
+    </nav>
+
+    <main class="main">
+      <div class="page-tag">ADMIN / PANEL</div>
+
+      <div class="admin-tabs">
+        <button class="tab tab--active" data-tab="articles">Articles</button>
+        <button class="tab" data-tab="code">Code Examples</button>
+        <button class="tab" data-tab="reports">Reports</button>
+      </div>
+
+      <!-- ARTICLES -->
+      <div class="tab-content" id="tab-articles">
+        <div class="section-header">
+          <span class="section-title">$ articles</span>
+          <button class="btn btn--primary btn--sm" id="new-article-btn">
+            + New Article
+          </button>
+        </div>
+
+        <div class="form-card hidden" id="article-form-card">
+          <h3 class="form-inner-title">New Article</h3>
+          <div class="form-group">
+            <label class="form-label">Title</label>
+            <input
+              type="text"
+              id="a-title"
+              class="form-input"
+              placeholder="SQL Injection Explained"
+            />
+          </div>
+          <div class="form-group">
+            <label class="form-label">OWASP Category</label>
+            <select id="a-category" class="form-input form-select">
+              <option value="">Select</option>
+              <option value="A01">A01 - Broken Access Control</option>
+              <option value="A02">A02 - Cryptographic Failures</option>
+              <option value="A03">A03 - Injection</option>
+              <option value="A04">A04 - Insecure Design</option>
+              <option value="A05">A05 - Security Misconfiguration</option>
+              <option value="A06">A06 - Vulnerable Components</option>
+              <option value="A07">A07 - Auth Failures</option>
+              <option value="A08">A08 - Software Integrity Failures</option>
+              <option value="A09">A09 - Logging Failures</option>
+              <option value="A10">A10 - SSRF</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Content</label>
+            <textarea
+              id="a-content"
+              class="form-textarea"
+              placeholder="Write the article content here..."
+            ></textarea>
+          </div>
+          <p id="a-result" class="form-result"></p>
+          <div class="form-actions">
+            <button
+              type="button"
+              id="save-article-btn"
+              class="btn btn--primary btn--sm"
+            >
+              Save Article
+            </button>
+            <button
+              type="button"
+              id="cancel-article-btn"
+              class="btn btn--ghost btn--sm"
+            >
+              Cancel
+            </button>
+          </div>
+        </div>
+
+        <div class="data-list" id="articles-list">
+          <div class="empty-state">loading...</div>
+        </div>
+      </div>
+
+      <!-- CODE EXAMPLES -->
+      <div class="tab-content hidden" id="tab-code">
+        <div class="section-header">
+          <span class="section-title">$ code_examples</span>
+          <button class="btn btn--primary btn--sm" id="new-code-btn">
+            + New Example
+          </button>
+        </div>
+
+        <div class="form-card hidden" id="code-form-card">
+          <h3 class="form-inner-title">New Code Example</h3>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Title</label>
+              <input
+                type="text"
+                id="c-title"
+                class="form-input"
+                placeholder="SQL Injection in login"
+              />
+            </div>
+            <div class="form-group">
+              <label class="form-label">OWASP Category</label>
+              <select id="c-category" class="form-input form-select">
+                <option value="">Select</option>
+                <option value="A01">A01</option>
+                <option value="A02">A02</option>
+                <option value="A03">A03</option>
+                <option value="A04">A04</option>
+                <option value="A05">A05</option>
+                <option value="A06">A06</option>
+                <option value="A07">A07</option>
+                <option value="A08">A08</option>
+                <option value="A09">A09</option>
+                <option value="A10">A10</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Severity</label>
+              <select id="c-severity" class="form-input form-select">
+                <option value="">Select</option>
+                <option value="critical">Critical</option>
+                <option value="high">High</option>
+                <option value="medium">Medium</option>
+                <option value="low">Low</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Vulnerable Code</label>
+            <textarea
+              id="c-vuln"
+              class="form-textarea form-textarea--code"
+              placeholder="// vulnerable code here"
+            ></textarea>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Fixed Code</label>
+            <textarea
+              id="c-fix"
+              class="form-textarea form-textarea--code form-textarea--safe"
+              placeholder="// fixed code here"
+            ></textarea>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Explanation</label>
+            <textarea
+              id="c-explanation"
+              class="form-textarea"
+              placeholder="Explain what the vulnerability is and why the fix works..."
+            ></textarea>
+          </div>
+          <p id="c-result" class="form-result"></p>
+          <div class="form-actions">
+            <button
+              type="button"
+              id="save-code-btn"
+              class="btn btn--primary btn--sm"
+            >
+              Save Example
+            </button>
+            <button
+              type="button"
+              id="cancel-code-btn"
+              class="btn btn--ghost btn--sm"
+            >
+              Cancel
+            </button>
+          </div>
+        </div>
+
+        <div class="data-list" id="code-list">
+          <div class="empty-state">loading...</div>
+        </div>
+      </div>
+
+      <!-- REPORTS -->
+      <div class="tab-content hidden" id="tab-reports">
+        <div class="section-header">
+          <span class="section-title">$ all_reports</span>
+        </div>
+        <div class="data-list" id="reports-list">
+          <div class="empty-state">loading...</div>
+        </div>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <span>Built for learning · OWASP Top 10</span>
+    </footer>
+
+    <script src="admin.js"></script>
+  </body>
+</html>

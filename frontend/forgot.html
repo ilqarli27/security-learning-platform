@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BugHunt — Forgot Password</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Syne:wght@400;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="forgot.css" />
+  </head>
+  <body>
+    <div class="noise"></div>
+    <div class="scanline"></div>
+
+    <nav class="nav">
+      <div class="nav-logo">
+        <a href="home" style="text-decoration: none; color: inherit">
+          <span class="logo-bracket">[</span>BugHunt<span class="logo-bracket"
+            >]</span
+          >
+        </a>
+      </div>
+      <div class="nav-links">
+        <a href="login" class="nav-link">Login</a>
+        <a href="register" class="nav-link">Register</a>
+      </div>
+    </nav>
+
+    <main class="auth-main">
+      <div class="forgot-container">
+        <div class="forgot-card">
+          <div class="card-header">
+            <div class="card-icon">🔑</div>
+            <h1>Forgot Password</h1>
+            <p>Enter your email or username to reset your password</p>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="email">Email address</label>
+            <div class="input-wrapper">
+              <span class="input-icon">@</span>
+              <input
+                type="email"
+                id="email"
+                class="form-input"
+                placeholder="hunter@domain.com"
+                autocomplete="email"
+                required
+              />
+            </div>
+          </div>
+
+          <p id="result" class="result-text"></p>
+
+          <button id="submit" class="btn btn--primary btn--full">
+            <span>Send Reset Link</span>
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <line x1="22" y1="2" x2="11" y2="13" />
+              <polygon points="22 2 15 22 11 13 2 9 22 2" />
+            </svg>
+          </button>
+
+          <div class="links">
+            <a href="login" class="back-link">
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <polyline points="15 18 9 12 15 6" />
+              </svg>
+              Back to Login
+            </a>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <span>Built for learning · OWASP Top 10</span>
+    </footer>
+
+    <script src="forgot.js"></script>
+  </body>
+</html>

@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BugHunt — Profile</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Syne:wght@400;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="profile.css" />
+  </head>
+  <body>
+    <div class="noise"></div>
+    <div class="scanline"></div>
+    <nav class="nav">
+      <div class="nav-logo">
+        <a href="/profile" style="text-decoration: none; color: inherit">
+          <span class="logo-bracket">[</span>BugHunt<span class="logo-bracket"
+            >]</span
+          >
+        </a>
+      </div>
+      <div class="nav-links">
+        <div class="nav-user">
+          <div class="nav-avatar" id="nav-avatar">??</div>
+          <span id="nav-email">loading...</span>
+        </div>
+        <a href="/profile" class="nav-link nav-link--active">Profile</a>
+        <a href="/learn" class="nav-link">Learn</a>
+        <a href="/report" class="nav-link">New Report</a>
+        <a
+          href="/admin"
+          class="nav-link nav-link--admin"
+          id="admin-link"
+          style="display: none"
+          >Admin</a
+        >
+        <button class="nav-link" id="logout-btn">Logout</button>
+      </div>
+    </nav>
+    <main class="main">
+      <div class="page-tag" id="pageTag">USER / PROFILE</div>
+      <div class="profile-grid">
+        <div class="profile-card">
+          <div class="avatar-ring" id="avatar">??</div>
+          <div class="profile-name" id="profile-name">—</div>
+          <div class="profile-email" id="profile-email">—</div>
+          <div class="profile-badge">HUNTER</div>
+          <div class="profile-divider"></div>
+          <div class="profile-meta">
+            <div class="meta-row">
+              <span class="meta-key">joined</span
+              ><span class="meta-val" id="meta-joined">—</span>
+            </div>
+            <div class="meta-row">
+              <span class="meta-key">reports</span
+              ><span class="meta-val" id="meta-reports">—</span>
+            </div>
+            <div class="meta-row">
+              <span class="meta-key">last active</span
+              ><span class="meta-val">today</span>
+            </div>
+          </div>
+          <div class="profile-divider"></div>
+          <div class="quick-nav">
+            <a href="/learn" class="quick-nav-item">
+              <span class="quick-nav-icon">📚</span>
+              <div>
+                <p class="quick-nav-title">Learn</p>
+                <p class="quick-nav-sub">Articles, OWASP, Code</p>
+              </div>
+              <span class="quick-nav-arrow">→</span>
+            </a>
+            <a href="/report/new" class="quick-nav-item">
+              <span class="quick-nav-icon">🐛</span>
+              <div>
+                <p class="quick-nav-title">New Report</p>
+                <p class="quick-nav-sub">Submit a vulnerability</p>
+              </div>
+              <span class="quick-nav-arrow">→</span>
+            </a>
+            <a
+              href="#external-report"
+              class="quick-nav-item"
+              id="ext-report-link"
+            >
+              <span class="quick-nav-icon">🌐</span>
+              <div>
+                <p class="quick-nav-title">Found a Bug Elsewhere?</p>
+                <p class="quick-nav-sub">Let us write the report</p>
+              </div>
+              <span class="quick-nav-arrow">→</span>
+            </a>
+          </div>
+          <button class="btn-logout" id="logout-btn-2">[ logout ]</button>
+        </div>
+        <div class="right-col">
+          <div class="stats-row">
+            <div class="stat-card">
+              <div class="stat-card-num" id="stat-total">0</div>
+              <div class="stat-card-label">Total Reports</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-card-num" id="stat-accepted">0</div>
+              <div class="stat-card-label">Accepted</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-card-num" id="stat-critical">0</div>
+              <div class="stat-card-label">Critical</div>
+            </div>
+          </div>
+          <div class="section">
+            <div class="section-header">
+              <span class="section-title">$ recent_reports</span>
+              <button class="section-action" id="new-report-btn">
+                + new report
+              </button>
+            </div>
+            <div class="report-list" id="report-list">
+              <div class="empty-state">loading reports...</div>
+            </div>
+          </div>
+          <div class="section" id="external-report">
+            <div class="section-header">
+              <span class="section-title">$ report_external_bug</span>
+              <span class="section-badge">AI-assisted</span>
+            </div>
+            <div class="ext-form">
+              <p class="ext-form-desc">
+                Found a vulnerability on another site? Fill in what you know —
+                we'll generate a professional bug report for you.
+              </p>
+              <div class="form-group">
+                <label class="form-label" for="ext-target"
+                  >Target URL / App</label
+                >
+                <div class="input-wrapper">
+                  <span class="input-icon">→</span>
+                  <input
+                    type="text"
+                    id="ext-target"
+                    class="form-input"
+                    placeholder="https://example.com/login"
+                  />
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label" for="ext-type"
+                    >Vulnerability Type</label
+                  >
+                  <select id="ext-type" class="form-input form-select">
+                    <option value="">Select type</option>
+                    <option value="SQL Injection">SQL Injection</option>
+                    <option value="XSS">XSS</option>
+                    <option value="IDOR">IDOR</option>
+                    <option value="CSRF">CSRF</option>
+                    <option value="Broken Auth">Broken Auth</option>
+                    <option value="Open Redirect">Open Redirect</option>
+                    <option value="SSRF">SSRF</option>
+                    <option value="RCE">RCE</option>
+                    <option value="Info Disclosure">Info Disclosure</option>
+                    <option value="Other">Other</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="ext-severity">Severity</label>
+                  <select id="ext-severity" class="form-input form-select">
+                    <option value="">Select</option>
+                    <option value="critical">Critical</option>
+                    <option value="high">High</option>
+                    <option value="medium">Medium</option>
+                    <option value="low">Low</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="ext-what"
+                  >What did you find?</label
+                >
+                <textarea
+                  id="ext-what"
+                  class="form-textarea"
+                  placeholder="Describe what you found. E.g: I could see another user's data by changing the ID in the URL from /profile/1 to /profile/2"
+                ></textarea>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="ext-steps"
+                  >Steps you took (optional)</label
+                >
+                <textarea
+                  id="ext-steps"
+                  class="form-textarea form-textarea--sm"
+                  placeholder="1. Went to /profile/1&#10;2. Changed 1 to 2&#10;3. Saw another user's data"
+                ></textarea>
+              </div>
+              <p id="ext-result" class="form-result"></p>
+              <button
+                type="button"
+                id="ext-submit-btn"
+                class="btn btn--primary"
+              >
+                <span>Generate Report</span>
+                <svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <polyline points="13 17 18 12 13 7" />
+                  <polyline points="6 17 11 12 6 7" />
+                </svg>
+              </button>
+            </div>
+            <div class="generated-report hidden" id="generated-report">
+              <div class="gen-header">
+                <span class="gen-label">✓ generated report</span>
+                <button class="btn btn--ghost btn--sm" id="save-generated-btn">
+                  Save to My Reports
+                </button>
+              </div>
+              <div class="gen-body" id="gen-body"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <footer class="footer">
+      <span>Built for learning · OWASP Top 10</span>
+    </footer>
+    <script src="profile.js"></script>
+  </body>
+</html>

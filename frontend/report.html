@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BugHunt — New Report</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Syne:wght@400;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="report.css" />
+  </head>
+  <body>
+    <div class="noise"></div>
+    <div class="scanline"></div>
+
+    <nav class="nav">
+      <div class="nav-logo">
+        <a href="/profile" style="text-decoration: none; color: inherit">
+          <span class="logo-bracket">[</span>BugHunt<span class="logo-bracket"
+            >]</span
+          >
+        </a>
+      </div>
+      <div class="nav-links">
+        <div class="nav-user">
+          <div class="nav-avatar" id="nav-avatar">??</div>
+          <span id="nav-email">loading...</span>
+        </div>
+        <a href="/profile" class="nav-link">Profile</a>
+        <a href="/learn" class="nav-link">Learn</a>
+        <a href="/report" class="nav-link--active">New Report</a>
+
+        <button class="nav-link" id="logout-btn">Logout</button>
+      </div>
+    </nav>
+
+    <main class="main">
+      <div class="page-tag">REPORT / NEW</div>
+
+      <div class="report-layout">
+        <div class="report-form-col">
+          <div class="form-card">
+            <div class="form-card-header">
+              <span class="form-card-icon">🐛</span>
+              <div>
+                <h1 class="form-card-title">Submit Bug Report</h1>
+                <p class="form-card-sub">Document a vulnerability you found</p>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="title">Report Title</label>
+              <div class="input-wrapper">
+                <span class="input-icon">$</span>
+                <input
+                  type="text"
+                  id="title"
+                  class="form-input"
+                  placeholder="SQL Injection in /login endpoint"
+                />
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="category">OWASP Category</label>
+                <div class="input-wrapper select-wrapper">
+                  <span class="input-icon">#</span>
+                  <select id="category" class="form-input form-select">
+                    <option value="">Select category</option>
+                    <option value="A01">A01 - Broken Access Control</option>
+                    <option value="A02">A02 - Cryptographic Failures</option>
+                    <option value="A03">A03 - Injection</option>
+                    <option value="A04">A04 - Insecure Design</option>
+                    <option value="A05">A05 - Security Misconfiguration</option>
+                    <option value="A06">A06 - Vulnerable Components</option>
+                    <option value="A07">A07 - Auth Failures</option>
+                    <option value="A08">
+                      A08 - Software Integrity Failures
+                    </option>
+                    <option value="A09">A09 - Logging Failures</option>
+                    <option value="A10">A10 - SSRF</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="severity">Severity</label>
+                <div class="input-wrapper select-wrapper">
+                  <span class="input-icon">!</span>
+                  <select id="severity" class="form-input form-select">
+                    <option value="">Select severity</option>
+                    <option value="critical">Critical</option>
+                    <option value="high">High</option>
+                    <option value="medium">Medium</option>
+                    <option value="low">Low</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="target"
+                >Target URL / Endpoint</label
+              >
+              <div class="input-wrapper">
+                <span class="input-icon">→</span>
+                <input
+                  type="text"
+                  id="target"
+                  class="form-input"
+                  placeholder="http://localhost:3000/login"
+                />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="description">Description</label>
+              <textarea
+                id="description"
+                class="form-textarea"
+                placeholder="Describe the vulnerability in detail. What did you find? Where is it? How does it work?"
+              ></textarea>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="steps">Steps to Reproduce</label>
+              <textarea
+                id="steps"
+                class="form-textarea"
+                placeholder="1. Go to /login&#10;2. Enter payload: ' OR 1=1 --&#10;3. Observe that authentication is bypassed"
+              ></textarea>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="impact">Impact</label>
+              <textarea
+                id="impact"
+                class="form-textarea form-textarea--sm"
+                placeholder="What can an attacker do with this vulnerability?"
+              ></textarea>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="recommendation"
+                >Recommendation</label
+              >
+              <textarea
+                id="recommendation"
+                class="form-textarea form-textarea--sm"
+                placeholder="How should this be fixed?"
+              ></textarea>
+            </div>
+
+            <p id="result" class="form-result"></p>
+
+            <div class="form-actions">
+              <button type="button" id="submit-btn" class="btn btn--primary">
+                <span>Submit Report</span>
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <line x1="22" y1="2" x2="11" y2="13" />
+                  <polygon points="22 2 15 22 11 13 2 9 22 2" />
+                </svg>
+              </button>
+              <a href="/profile" class="btn btn--ghost">Cancel</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="report-guide-col">
+          <div class="guide-card">
+            <div class="guide-header">
+              <span class="guide-icon">📋</span>
+              <span class="guide-title">Report Guide</span>
+            </div>
+            <div class="guide-body">
+              <div class="guide-step">
+                <span class="step-num">01</span>
+                <div>
+                  <p class="step-title">Be Specific</p>
+                  <p class="step-desc">
+                    Include the exact endpoint, parameter, or function that is
+                    vulnerable.
+                  </p>
+                </div>
+              </div>
+              <div class="guide-step">
+                <span class="step-num">02</span>
+                <div>
+                  <p class="step-title">Reproduce It</p>
+                  <p class="step-desc">
+                    List every step needed to trigger the vulnerability from
+                    scratch.
+                  </p>
+                </div>
+              </div>
+              <div class="guide-step">
+                <span class="step-num">03</span>
+                <div>
+                  <p class="step-title">Show Impact</p>
+                  <p class="step-desc">
+                    Explain what an attacker could achieve — data theft, bypass,
+                    takeover.
+                  </p>
+                </div>
+              </div>
+              <div class="guide-step">
+                <span class="step-num">04</span>
+                <div>
+                  <p class="step-title">Suggest a Fix</p>
+                  <p class="step-desc">
+                    Even a basic recommendation adds real value to the report.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="guide-card guide-card--terminal">
+            <div class="guide-header">
+              <span class="guide-icon">⚡</span>
+              <span class="guide-title">Quick Severity Guide</span>
+            </div>
+            <div class="sev-guide">
+              <div class="sev-row">
+                <span class="severity sev-critical">CRITICAL</span>
+                <span class="sev-text">RCE, Auth bypass, Full DB dump</span>
+              </div>
+              <div class="sev-row">
+                <span class="severity sev-high">HIGH</span>
+                <span class="sev-text">IDOR, Stored XSS, SQLi</span>
+              </div>
+              <div class="sev-row">
+                <span class="severity sev-medium">MEDIUM</span>
+                <span class="sev-text">Reflected XSS, Open redirect</span>
+              </div>
+              <div class="sev-row">
+                <span class="severity sev-low">LOW</span>
+                <span class="sev-text">Info disclosure, Missing headers</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <span>Built for learning · OWASP Top 10</span>
+    </footer>
+
+    <script src="report.js"></script>
+  </body>
+</html>

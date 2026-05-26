@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BugHunt — Register</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Syne:wght@400;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="register.css" />
+  </head>
+  <body>
+    <div class="noise"></div>
+    <div class="scanline"></div>
+
+    <nav class="nav">
+      <div class="nav-logo">
+        <a
+          window.location.href="home"
+          style="text-decoration: none; color: inherit"
+        >
+          <span class="logo-bracket">[</span>BugHunt<span class="logo-bracket"
+            >]</span
+          >
+        </a>
+      </div>
+      <div class="nav-links">
+        <a href="login" class="nav-link">Login</a>
+        <a href="register" class="nav-link nav-link--active">Register</a>
+      </div>
+    </nav>
+
+    <main class="auth-main">
+      <div class="auth-left">
+        <div class="brand-tag">
+          <span class="tag">v1.0.0</span>
+          <span class="tag">BETA</span>
+        </div>
+        <h2 class="brand-title">
+          <span class="line line--1">Join.</span>
+          <span class="line line--2">Hunt.</span>
+          <span class="line line--3">Level up.</span>
+        </h2>
+        <p class="brand-desc">
+          Create your hunter account and start<br />
+          finding vulnerabilities, submitting<br />
+          reports and climbing the leaderboard.
+        </p>
+
+        <div class="perks">
+          <div class="perk">
+            <span class="perk-icon">🎯</span>
+            <div>
+              <p class="perk-title">Real Targets</p>
+              <p class="perk-sub">Practice on intentionally vulnerable apps</p>
+            </div>
+          </div>
+          <div class="perk">
+            <span class="perk-icon">📋</span>
+            <div>
+              <p class="perk-title">OWASP Top 10</p>
+              <p class="perk-sub">Cover all major vulnerability categories</p>
+            </div>
+          </div>
+          <div class="perk">
+            <span class="perk-icon">🏆</span>
+            <div>
+              <p class="perk-title">Track Progress</p>
+              <p class="perk-sub">Dashboard with your findings and stats</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="auth-right">
+        <div class="auth-card">
+          <div class="auth-card-header">
+            <div class="auth-card-icon">🛡️</div>
+            <h1 class="auth-card-title">Create account</h1>
+            <p class="auth-card-sub">Join the hunter community</p>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="email">Email</label>
+            <div class="input-wrapper">
+              <span class="input-icon">@</span>
+              <input
+                type="email"
+                id="email"
+                class="form-input"
+                placeholder="hunter@domain.com"
+                autocomplete="email"
+              />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="password">Password</label>
+            <div class="input-wrapper">
+              <span class="input-icon">*</span>
+              <input
+                type="password"
+                id="password"
+                class="form-input"
+                placeholder="••••••••••••"
+                autocomplete="new-password"
+              />
+              <button
+                class="toggle-pw"
+                type="button"
+                data-target="password"
+                aria-label="Toggle password"
+              >
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                  <circle cx="12" cy="12" r="3" />
+                </svg>
+              </button>
+            </div>
+            <div class="strength-bar" id="strengthBar">
+              <div class="strength-fill" id="strengthFill"></div>
+            </div>
+            <p class="strength-label" id="strengthLabel"></p>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="confirmpassword"
+              >Confirm Password</label
+            >
+            <div class="input-wrapper">
+              <span class="input-icon">*</span>
+              <input
+                type="password"
+                id="confirmpassword"
+                class="form-input"
+                placeholder="••••••••••••"
+                autocomplete="new-password"
+              />
+              <button
+                class="toggle-pw"
+                type="button"
+                data-target="confirmpassword"
+                aria-label="Toggle confirm password"
+              >
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                  <circle cx="12" cy="12" r="3" />
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <p id="result" class="form-result"></p>
+
+          <button
+            type="button"
+            id="registerbtn"
+            class="btn btn--primary btn--full"
+          >
+            <span>Create Account</span>
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+              <circle cx="9" cy="7" r="4" />
+              <line x1="19" y1="8" x2="19" y2="14" />
+              <line x1="22" y1="11" x2="16" y2="11" />
+            </svg>
+          </button>
+
+          <div class="links">
+            <a href="login" class="back-link">
+              Already have an account?
+              <span class="back-link--accent">Login</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <span>Built for learning · OWASP Top 10</span>
+    </footer>
+
+    <script src="register.js"></script>
+  </body>
+</html>

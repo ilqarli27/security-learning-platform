@@ -1,0 +1,303 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BugHunt — Learn</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Syne:wght@400;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="learn.css" />
+    <style>
+      .form-card {
+        background: var(--surface, #161616);
+        border: 1px solid rgba(0, 255, 136, 0.2);
+        border-radius: 6px;
+        padding: 1.25rem;
+        margin-bottom: 1.5rem;
+        display: none;
+      }
+      .form-card.open {
+        display: block;
+      }
+      .form-card h3 {
+        font-family: var(--mono);
+        font-size: 0.75rem;
+        color: var(--accent);
+        letter-spacing: 0.1em;
+        margin-bottom: 1rem;
+      }
+      .tab-toolbar {
+        display: flex;
+        justify-content: flex-end;
+        margin-bottom: 1rem;
+      }
+      .btn--add {
+        font-family: var(--mono);
+        font-size: 0.75rem;
+        padding: 0.4rem 1rem;
+        border: 1px solid var(--accent);
+        background: transparent;
+        color: var(--accent);
+        border-radius: 2px;
+        cursor: pointer;
+        letter-spacing: 0.07em;
+      }
+      .btn--add:hover {
+        background: rgba(0, 255, 136, 0.07);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="noise"></div>
+    <div class="scanline"></div>
+
+    <nav class="nav">
+      <div class="nav-logo">
+        <a href="/profile" style="text-decoration: none; color: inherit">
+          <span class="logo-bracket">[</span>BugHunt<span class="logo-bracket"
+            >]</span
+          >
+        </a>
+      </div>
+      <div class="nav-links">
+        <div class="nav-user">
+          <div class="nav-avatar" id="nav-avatar">??</div>
+          <span id="nav-email">loading...</span>
+        </div>
+        <a href="/profile" class="nav-link">Profile</a>
+        <a href="/learn" class="nav-link nav-link--active">Learn</a>
+        <a href="/report" class="nav-link">New Report</a>
+        <a
+          href="/admin"
+          class="nav-link"
+          id="admin-link"
+          style="display: none; color: var(--accent2)"
+          >Admin</a
+        >
+        <button class="nav-link" id="logout-btn">Logout</button>
+      </div>
+    </nav>
+
+    <main class="main">
+      <div class="page-tag">KNOWLEDGE BASE</div>
+      <div class="learn-header">
+        <h1 class="learn-title">Learn <span class="accent">Security</span></h1>
+        <p class="learn-sub">
+          Articles, vulnerable code examples, and OWASP Top 10 reference.
+        </p>
+      </div>
+
+      <div class="tabs">
+        <button class="tab tab--active" data-tab="owasp">OWASP Top 10</button>
+        <button class="tab" data-tab="articles">Articles</button>
+        <button class="tab" data-tab="code">Code Examples</button>
+      </div>
+
+      <!-- OWASP TAB -->
+      <div class="tab-content active" id="tab-owasp">
+        <div class="owasp-grid" id="owasp-grid"></div>
+      </div>
+
+      <!-- ARTICLES TAB -->
+      <div class="tab-content" id="tab-articles">
+        <div class="tab-toolbar">
+          <button class="btn--add" id="new-article-btn">+ new article</button>
+        </div>
+        <div class="form-card" id="article-form-card">
+          <h3>NEW ARTICLE</h3>
+          <div class="form-group">
+            <label class="form-label">TITLE</label>
+            <input
+              type="text"
+              id="a-title"
+              class="form-input"
+              placeholder="Article title..."
+            />
+          </div>
+          <div class="form-group">
+            <label class="form-label">OWASP CATEGORY</label>
+            <select id="a-category" class="form-input form-select">
+              <option value="">General</option>
+              <option value="A01">A01 - Broken Access Control</option>
+              <option value="A02">A02 - Cryptographic Failures</option>
+              <option value="A03">A03 - Injection</option>
+              <option value="A04">A04 - Insecure Design</option>
+              <option value="A05">A05 - Security Misconfiguration</option>
+              <option value="A06">A06 - Vulnerable Components</option>
+              <option value="A07">A07 - Auth & Session Failures</option>
+              <option value="A08">A08 - Software Integrity Failures</option>
+              <option value="A09">A09 - Logging & Monitoring Failures</option>
+              <option value="A10">A10 - Server-Side Request Forgery</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">CONTENT</label>
+            <textarea
+              id="a-content"
+              class="form-textarea"
+              rows="6"
+              placeholder="Write your article..."
+            ></textarea>
+          </div>
+          <div class="form-actions">
+            <button class="btn btn--primary" id="save-article-btn">save</button>
+            <button class="btn btn--ghost" id="cancel-article-btn">
+              cancel
+            </button>
+            <span class="form-result" id="a-result"></span>
+          </div>
+        </div>
+        <div class="search-bar">
+          <span class="search-icon">$</span>
+          <input
+            type="text"
+            id="article-search"
+            class="search-input"
+            placeholder="search articles..."
+          />
+        </div>
+        <div class="articles-grid" id="articles-grid">
+          <div class="empty-state">loading articles...</div>
+        </div>
+      </div>
+
+      <!-- CODE TAB -->
+      <div class="tab-content" id="tab-code">
+        <div class="tab-toolbar">
+          <button class="btn--add" id="new-code-btn">+ new code example</button>
+        </div>
+        <div class="form-card" id="code-form-card">
+          <h3>NEW CODE EXAMPLE</h3>
+          <div class="form-group">
+            <label class="form-label">TITLE</label>
+            <input
+              type="text"
+              id="c-title"
+              class="form-input"
+              placeholder="e.g. SQL Injection in login..."
+            />
+          </div>
+          <div class="form-group">
+            <label class="form-label">OWASP CATEGORY</label>
+            <select id="c-category" class="form-input form-select">
+              <option value="">General</option>
+              <option value="A01">A01</option>
+              <option value="A02">A02</option>
+              <option value="A03">A03</option>
+              <option value="A04">A04</option>
+              <option value="A05">A05</option>
+              <option value="A06">A06</option>
+              <option value="A07">A07</option>
+              <option value="A08">A08</option>
+              <option value="A09">A09</option>
+              <option value="A10">A10</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">SEVERITY</label>
+            <select id="c-severity" class="form-input form-select">
+              <option value="low">Low</option>
+              <option value="medium">Medium</option>
+              <option value="high">High</option>
+              <option value="critical">Critical</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">VULNERABLE CODE</label>
+            <textarea
+              id="c-vuln"
+              class="form-textarea"
+              rows="5"
+              placeholder="Paste vulnerable code..."
+            ></textarea>
+          </div>
+          <div class="form-group">
+            <label class="form-label">FIXED CODE</label>
+            <textarea
+              id="c-fix"
+              class="form-textarea"
+              rows="5"
+              placeholder="Paste fixed code..."
+            ></textarea>
+          </div>
+          <div class="form-group">
+            <label class="form-label">EXPLANATION</label>
+            <textarea
+              id="c-explanation"
+              class="form-textarea"
+              rows="3"
+              placeholder="Explain the vulnerability and fix..."
+            ></textarea>
+          </div>
+          <div class="form-actions">
+            <button class="btn btn--primary" id="save-code-btn">save</button>
+            <button class="btn btn--ghost" id="cancel-code-btn">cancel</button>
+            <span class="form-result" id="c-result"></span>
+          </div>
+        </div>
+        <div class="search-bar">
+          <span class="search-icon">$</span>
+          <input
+            type="text"
+            id="code-search"
+            class="search-input"
+            placeholder="search code examples..."
+          />
+        </div>
+        <div class="filter-row">
+          <button class="filter-btn filter-btn--active" data-filter="all">
+            All
+          </button>
+          <button class="filter-btn" data-filter="A01">A01</button>
+          <button class="filter-btn" data-filter="A02">A02</button>
+          <button class="filter-btn" data-filter="A03">A03</button>
+          <button class="filter-btn" data-filter="A07">A07</button>
+        </div>
+        <div class="code-grid" id="code-grid">
+          <div class="empty-state">loading code examples...</div>
+        </div>
+      </div>
+    </main>
+
+    <!-- ARTICLE MODAL -->
+    <div class="modal-overlay hidden" id="article-modal">
+      <div class="modal">
+        <button class="modal-close" id="close-article-modal">✕</button>
+        <div class="modal-tag" id="modal-tag"></div>
+        <h2 class="modal-title" id="modal-title"></h2>
+        <div class="modal-meta" id="modal-meta"></div>
+        <div class="modal-body" id="modal-body"></div>
+      </div>
+    </div>
+
+    <!-- CODE MODAL -->
+    <div class="modal-overlay hidden" id="code-modal">
+      <div class="modal modal--wide">
+        <button class="modal-close" id="close-code-modal">✕</button>
+        <div class="modal-tag" id="code-modal-tag"></div>
+        <h2 class="modal-title" id="code-modal-title"></h2>
+        <div class="code-modal-body">
+          <div class="code-section">
+            <div class="code-section-label sev-critical">VULNERABLE CODE</div>
+            <pre class="code-block" id="code-modal-vuln"></pre>
+          </div>
+          <div class="code-section">
+            <div class="code-section-label sev-medium">FIXED CODE</div>
+            <pre class="code-block code-block--safe" id="code-modal-fix"></pre>
+          </div>
+          <div class="code-explanation" id="code-modal-explanation"></div>
+        </div>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <span>Built for learning · OWASP Top 10</span>
+    </footer>
+
+    <script src="learn.js"></script>
+  </body>
+</html>

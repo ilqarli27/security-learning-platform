@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BugHunt — Security Report System</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Syne:wght@400;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="home.css" />
+  </head>
+  <body>
+    <div class="noise"></div>
+
+    <div class="scanline"></div>
+
+    <nav class="nav">
+      <div class="nav-logo">
+        <span class="logo-bracket">[</span>BugHunt<span class="logo-bracket"
+          >]</span
+        >
+      </div>
+      <div class="nav-links">
+        <a href="login" class="nav-link">Login</a>
+        <a href="register" class="nav-link nav-link--active">Register</a>
+      </div>
+    </nav>
+
+    <main class="hero">
+      <div class="hero-left">
+        <div class="tag-line">
+          <span class="tag">v1.0.0</span>
+          <span class="tag">BETA</span>
+        </div>
+
+        <h1 class="hero-title">
+          <span class="line line--1">Find.</span>
+          <span class="line line--2">Report.</span>
+          <span class="line line--3">Fix.</span>
+        </h1>
+
+        <p class="hero-desc">
+          A security bug reporting system built for learning <br />
+          ethical hacking and web vulnerabilities.
+        </p>
+
+        <div class="hero-cta">
+          <a href="register" class="btn btn--primary">Get Started</a>
+          <a href="login" class="btn btn--ghost">Login</a>
+        </div>
+
+        <div class="stats">
+          <div class="stat">
+            <span class="stat-num" data-target="128">0</span>
+            <span class="stat-label">Reports</span>
+          </div>
+          <div class="stat">
+            <span class="stat-num" data-target="34">0</span>
+            <span class="stat-label">Hunters</span>
+          </div>
+          <div class="stat">
+            <span class="stat-num" data-target="10">0</span>
+            <span class="stat-label">OWASP Covered</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-right">
+        <div class="terminal">
+          <div class="terminal-header">
+            <span class="dot dot--red"></span>
+            <span class="dot dot--yellow"></span>
+            <span class="dot dot--green"></span>
+            <span class="terminal-title">bug_hunter.sh</span>
+          </div>
+          <div class="terminal-body">
+            <div class="terminal-line">
+              <span class="prompt">$</span>
+              <span class="cmd typed">scanning target...</span>
+            </div>
+            <div class="terminal-line delay-1">
+              <span class="prompt">!</span>
+              <span class="warn">IDOR found → /report/42</span>
+            </div>
+            <div class="terminal-line delay-2">
+              <span class="prompt">!</span>
+              <span class="warn">SQLi found → /login</span>
+            </div>
+            <div class="terminal-line delay-3">
+              <span class="prompt">!</span>
+              <span class="warn">XSS found → /report/title</span>
+            </div>
+            <div class="terminal-line delay-4">
+              <span class="prompt">$</span>
+              <span class="cmd">submitting report...</span>
+            </div>
+            <div class="terminal-line delay-5">
+              <span class="prompt success">✓</span>
+              <span class="success-text">report #0x4F submitted</span>
+            </div>
+            <div class="terminal-line delay-6">
+              <span class="prompt">$</span>
+              <span class="cursor-blink">_</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="floating-cards">
+          <div class="fcard fcard--1">
+            <span class="fcard-icon">🔐</span>
+            <span class="fcard-label">Broken Auth</span>
+          </div>
+          <div class="fcard fcard--2">
+            <span class="fcard-icon">💉</span>
+            <span class="fcard-label">Injection</span>
+          </div>
+          <div class="fcard fcard--3">
+            <span class="fcard-icon">🔓</span>
+            <span class="fcard-label">Access Control</span>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <span>Built for learning · OWASP Top 10</span>
+    </footer>
+
+    <script src="home.js"></script>
+  </body>
+</html>
