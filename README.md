@@ -1,5 +1,4 @@
-# security-learning-platform
-Web app for learning cybersecurity — articles, vulnerable code examples, and bug report submissions.
+
 # 🔐 Security Learning Platform
  
 A web-based cybersecurity learning platform built with Node.js, Express, and PostgreSQL.  
