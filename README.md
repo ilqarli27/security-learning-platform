@@ -123,7 +123,7 @@ CREATE TABLE reports (
 ### 5. Start the server
  
 ```bash
-node index.js
+node server.js
 ```
  
 Server will run at `http://localhost:3000`
